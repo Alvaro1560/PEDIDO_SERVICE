@@ -40,7 +40,7 @@ app.use('/api/pedidos', pedidosRouter);
 conectarDB();
 
 // Arrancar el servidor
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 4002;
 app.listen(PORT, (error) => {
   if (error) return console.log('Hubo un error'), process.exit(1);
   console.log(`El servidor corriendo: http://localhost:${PORT}`);

@@ -1,8 +1,10 @@
 import Pedido from "../models/Pedido.js";
 import Producto from "../models/Producto.js";
+import { sendMessage } from './rabbitController.js';
 
 // realizar los pedidos
 const realizarPedido = async (req, res) => {
+
   const { usuario } = req;
 
   const { datos, productos, total } = req.body;
@@ -34,6 +36,8 @@ const realizarPedido = async (req, res) => {
             msg: `El producto ${productoDB.nombre} no tiene stock (Agotado)`,
           });
         }
+
+        await sendMessage(usuario);
 
         productoDB.unidades -= cantidad;
         productoDB.ventas += cantidad;
